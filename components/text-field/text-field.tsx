@@ -6,15 +6,15 @@ import { Text } from "../text/text"
 
 // the base styling for the container
 const CONTAINER: ViewStyle = {
-  paddingVertical: spacing.small2,
+  paddingVertical: 8,
 }
 
 // the base styling for the TextInput
 const INPUT: TextStyle = {
-  color: color.text,
+  color:'black',
   minHeight: 44,
   fontSize: 18,
-  backgroundColor: color.palette.white,
+  backgroundColor: 'white',
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
@@ -31,12 +31,6 @@ export interface TextFieldProps extends TextInputProps {
 
   /** Error text to show */
   errorText?: string
-  errorTx?: TxKeyPath
-
-  /**
-   * The label i18n key.
-   */
-  labelTx?: TxKeyPath
 
   /**
    * The label text if no labelTx is provided.
@@ -67,14 +61,12 @@ export interface TextFieldProps extends TextInputProps {
 export function TextField(props: TextFieldProps) {
   const {
     placeholder,
-    labelTx,
     label,
     preset = "default",
     style: styleOverride,
     inputStyle: inputStyleOverride,
     forwardedRef,
     errorText,
-    errorTx,
     ...rest
   } = props
 
@@ -94,7 +86,7 @@ export function TextField(props: TextFieldProps) {
         ref={forwardedRef}
       />
       <Spacer margin={4} />
-      { errorText || errorTx ? (<Text preset="error" text={errorText} />) : null}
+      { errorText ? (<Text preset="error" text={errorText} />) : null}
     </View>
   )
 }
