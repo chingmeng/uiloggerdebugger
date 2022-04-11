@@ -7,6 +7,7 @@ export class Console {
   currentScreen = ""
   previousScreen = ""
   url = ""
+  envName=""
 
   static getInstance() {
     if (Console.instance == null) {

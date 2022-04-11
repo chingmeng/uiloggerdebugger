@@ -4,13 +4,11 @@ import { Console } from './console';
 const tags = [];
 const showAll = true;
 
-let env = ''
-
 export const setEnvTag = (env: string) => {
-    env = env;
+    Console.getInstance().envName = env;
 };
 
-export const getEnv = () => env;
+export const getEnv = () => Console.getInstance().envName;
 
 export const rLog = (...args) => {
     _pdLog(' ', 'log', 1000, ...args);
@@ -44,11 +42,11 @@ const _pdLog = (separator = ' ', tag, config, ...args) => {
         (showAll || tags.filter((e) => tag.includes(e)).length > 0) &&
         console.debug(
             `
-----${tag} (${now}) [[ ${env} ]] ----
+----${tag} (${now}) [[ ${Console.getInstance().envName} ]] ----
 ${args
     .map((e) => buildText())
     .join(separator)}
-----END ${tag} (${now}) [[ ${env} ]] ----`,
+----END ${tag} (${now}) [[ ${Console.getInstance().envName} ]] ----`,
         );
  
     // send this off to Reactotron.
