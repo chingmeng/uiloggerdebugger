@@ -1,0 +1,11 @@
+{
+  "name": "uiloggerdebugger",
+  "version": "1.0.0",
+  "description": "UI Log debugger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CM, Hong",
+  "license": "ISC"
+}
