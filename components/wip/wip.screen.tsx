@@ -1,10 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import { observer } from "mobx-react-lite"
 import React from "react"
 import { Image, StyleSheet, View } from "react-native"
 import { Text } from "../text/text"
 
-export const WipScreen = observer(({text, style}) => {
+export const WipScreen = ({text, style}) => {
   return (
     <View testID="WipScreen" style={[{flex : 1}, style]}>
       <View style={LayoutStyle.VERTICAL_FLEX_CENTER}>
@@ -28,4 +27,4 @@ const LayoutStyle = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
   },
-})
+}
