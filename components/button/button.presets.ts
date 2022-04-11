@@ -4,15 +4,15 @@ import { TextStyle, ViewStyle } from "react-native"
  * All text will start off looking like this.
  */
 const BASE_VIEW: ViewStyle = {
-  paddingVertical: spacing.xsmall2,
-  paddingHorizontal: spacing.xsmall2,
+  paddingVertical: 8,
+  paddingHorizontal: 8,
   borderRadius: 4,
   justifyContent: "center",
   alignItems: "center",
 }
 
 const BASE_TEXT: TextStyle = {
-  paddingHorizontal: spacing.small2,
+  paddingHorizontal: 8,
 }
 
 /**
