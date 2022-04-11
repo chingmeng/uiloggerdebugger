@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from "react"
-import { Image, StyleSheet, View } from "react-native"
-import { Text } from "../text/text"
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
+import { Text } from "../text/text";
 
 export const WipScreen = ({text, style}) => {
   return (
@@ -18,7 +18,7 @@ export const WipScreen = ({text, style}) => {
       </View>
     </View>
   )
-})
+};
 
 const LayoutStyle = StyleSheet.create({
   VERTICAL_FLEX_CENTER: {
@@ -27,4 +27,4 @@ const LayoutStyle = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
   },
-}
+})
