@@ -4,9 +4,9 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import React, { Fragment, useEffect, useState } from "react"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
-import { WipScreen } from '../components/wip/wip.screen'
 import { RootModal } from "./components/modal/root-modal/root.modal"
 import { Text } from "./components/text/text"
+import { WipScreen } from './components/wip/wip.screen'
 import { Console } from "./console"
 import { rBLog, rLog } from "./logger"
 import { ConsoleDetail } from "./screens/console_detail"
