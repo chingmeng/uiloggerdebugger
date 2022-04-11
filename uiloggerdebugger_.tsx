@@ -21,9 +21,9 @@ export const UILoggerDebugger = ({ show = false, env = '' }) => {
   const [showConsole, setConsole] = useState(false)
   const [modalConfig, setModalConfig] = useState(null)
 
-  useEffect(() => {
-    setEnvTag(env);
+  setEnvTag(env);
 
+  useEffect(() => {
     console.log = (...a) => {
       if (a.length > 1) {
         const [tag, ...values] = a

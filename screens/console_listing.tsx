@@ -8,7 +8,7 @@ import { WipScreen } from "../components/wip/wip.screen"
 import { Console } from "../console"
 import { getEnv, rBLog, rLog } from "../logger"
 
-export const ConsoleListing = ({ navigation }) => {
+export const ConsoleListing = ({ navigation, envName }) => {
   const [arrays, setArrays] = useState(Console.getInstance().getArray())
   const [isUpdated, setIsUpdated] = useState(false);
 
