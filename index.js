@@ -1,3 +1,3 @@
 import { UILoggerDebugger } from './uiloggerdebugger'
 
-export default UILoggerDebugger;
+export default {UILoggerDebugger, Console};
