@@ -8,7 +8,7 @@ import { RootModal } from "./components/modal/root-modal/root.modal"
 import { Text } from "./components/text/text"
 import { WipScreen } from './components/wip/wip.screen'
 import { Console } from "./console"
-import { rBLog, rLog } from "./logger"
+import { rBLog, rLog, setEnvTag } from "./logger"
 import { ConsoleDetail } from "./screens/console_detail"
 import { ConsoleListing } from "./screens/console_listing"
 import { ConsoleTags } from './screens/console_tags'
@@ -17,11 +17,13 @@ export const drawerNav = React.createRef<NavigationContainerRef<ParamListBase>>(
 
 const Stack = createStackNavigator()
 
-export const UILoggerDebugger = ({ show = false }) => {
+export const UILoggerDebugger = ({ show = false, env = '' }) => {
   const [showConsole, setConsole] = useState(false)
   const [modalConfig, setModalConfig] = useState(null)
 
   useEffect(() => {
+    setEnvTag(env);
+
     console.log = (...a) => {
       if (a.length > 1) {
         const [tag, ...values] = a

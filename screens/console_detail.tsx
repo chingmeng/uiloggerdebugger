@@ -1,7 +1,7 @@
 /* eslint-disable react-native/sort-styles */
 import React from "react"
 import { TextInput } from "react-native"
-import Spacer from "../components/spacer/Spacer"
+import Spacer from "../components/modal/root-modal/spacer/Spacer"
 
 export const ConsoleDetail = ({ route }) => {
   const item = route?.params?.content

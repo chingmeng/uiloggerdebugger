@@ -2,13 +2,11 @@
 import React, { useEffect, useLayoutEffect, useState } from "react"
 import { Clipboard, FlatList, StyleSheet, TextInput, View } from "react-native"
 import { Button } from "../components/button/button"
-import Spacer from "../components/spacer/Spacer"
+import Spacer from "../components/modal/root-modal/spacer/Spacer"
 import { Text } from "../components/text/text"
 import { WipScreen } from "../components/wip/wip.screen"
 import { Console } from "../console"
-import { rBLog, rLog } from "../logger"
-
-const env = ""
+import { getEnv, rBLog, rLog } from "../logger"
 
 export const ConsoleListing = ({ navigation }) => {
   const [arrays, setArrays] = useState(Console.getInstance().getArray())
@@ -122,9 +120,9 @@ export const ConsoleListing = ({ navigation }) => {
 
               const texts = `----${item.tag} (${
                 item.now
-              }) [[ ${env} ]]----${"\n"}${content}${"\n"}----END ${item.tag} (${
+              }) [[ ${getEnv()} ]]----${"\n"}${content}${"\n"}----END ${item.tag} (${
                 item.now
-              }) [[ ${env} ]] ----`
+              }) [[ ${getEnv()} ]] ----`
               Clipboard.setString(texts)
             }}
           />

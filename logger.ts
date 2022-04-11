@@ -4,7 +4,13 @@ import { Console } from './console';
 const tags = [];
 const showAll = true;
 
-const env = ''
+let env = ''
+
+export const setEnvTag = (env: string) => {
+    env = env;
+};
+
+export const getEnv = () => env;
 
 export const rLog = (...args) => {
     _pdLog(' ', 'log', 1000, ...args);
