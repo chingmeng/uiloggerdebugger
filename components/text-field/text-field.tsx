@@ -1,7 +1,7 @@
 import { flatten } from "ramda"
 import React from "react"
 import { StyleProp, TextInput, TextInputProps, TextStyle, View, ViewStyle } from "react-native"
-import Spacer from "../spacer/Spacer"
+import Spacer from "../modal/root-modal/spacer/Spacer"
 import { Text } from "../text/text"
 
 // the base styling for the container

@@ -68,7 +68,7 @@ export const ConsoleListing = ({ navigation }) => {
         <Text style={{ fontWeight: "bold", fontSize: 20 }}>{`${item.tag}`}</Text>
         <Spacer margin={4} />
         <View style={{ flex: 1, flexDirection: "row" }}>
-          <Text text={"DEV"} style={{fontSize: 12, fontWeight: '500'}} />
+          <Text text={getEnv()} style={{fontSize: 12, fontWeight: '500'}} />
         </View>
         <Spacer margin={4} />
         <Text style={{ fontSize: 10 }} text={item.now} />
