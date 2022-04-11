@@ -18,7 +18,7 @@ export const CustomModal = (props) => {
         }).start();
     };
 
-    useEffect(() => isVisible && fadeIn(), [isVisible]);
+    useEffect(() => { isVisible && fadeIn() }, [isVisible]);
 
     return (
         <>
