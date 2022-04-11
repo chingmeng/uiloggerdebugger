@@ -1,7 +1,6 @@
 /* eslint-disable react-native/sort-styles */
 import React from "react"
 import { TextInput } from "react-native"
-import "react-native-get-random-values"
 import Spacer from "../components/spacer/Spacer"
 
 export const ConsoleDetail = ({ route }) => {
