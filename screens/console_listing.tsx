@@ -65,7 +65,6 @@ export const ConsoleListing = ({ route,  navigation }) => {
 
     return (
       <View style={{ marginVertical: 8, marginHorizontal: 16 }}>
-
         <Text style={{ fontWeight: "bold", fontSize: 20 }}>{`${item.tag}`}</Text>
         <Spacer margin={4} />
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -136,6 +135,13 @@ export const ConsoleListing = ({ route,  navigation }) => {
 
   return (
     <View style={{ ...LayoutStyle.VERTICAL_FLEX }}>
+      <Text style={{ fontWeight: "bold", fontSize: 16, marginHorizontal: 8 }}>{`Trails (Max 10)`}</Text>
+      <View style={{flexDirection: 'row'}}>
+          <Text 
+            text={Console.getInstance().navigations.join(' -> ')}
+            style={{ margin: 8 }}
+          />
+      </View> 
       <FlatList
         data={arrays}
         keyExtractor={(item, index) => index.toString()}

@@ -29,7 +29,7 @@ export const ConsoleTags = ({ route, navigation }) => {
             style={{marginVertical: 8, marginHorizontal: 16, backgroundColor: "beige"}}>
                <Button 
                 text={item} 
-                textStyle={{fontSize: 12}}
+                textStyle={{fontSize: 16, fontWeight: 'bold'}}
                 style={{backgroundColor: "purple", margin: 4}} 
                 onPress={() => {
                     Console.getInstance().setArrayByTag(item)

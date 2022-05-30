@@ -6,6 +6,7 @@ export class Console {
   presentArray = []
   currentScreen = ""
   previousScreen = ""
+  navigations = [];
   url = ""
   envName=""
 
@@ -30,6 +31,13 @@ export class Console {
     })
 
     this.presentArray = [...this.consoleArray]
+  }
+
+  addNavigations(newDestination) {
+      const lastItem = this.navigations?.[this.navigations.length - 1];
+      if (lastItem === newDestination) return;
+      this.navigations.push(newDestination);
+      this.navigations = this.navigations.reverse().slice(0, 10).reverse();
   }
 
   clear() {
