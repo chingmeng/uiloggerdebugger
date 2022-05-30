@@ -38,16 +38,7 @@ export class Console {
   }
 
   getArray() {
-    const sortArrayAlgorithm = (a, b) => {
-      if (a.tag < b.tag) {
-        return 1
-      }
-      if (a.tag > b.tag) {
-        return -1
-      }
-      return 0
-    }
-    return this.presentArray.sort(sortArrayAlgorithm)
+    return this.presentArray;
   }
 
   setArrayByTag(tag: string) {
