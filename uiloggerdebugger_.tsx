@@ -8,7 +8,7 @@ import { RootModal } from "./components/modal/root-modal/root.modal"
 import { Text } from "./components/text/text"
 import { WipScreen } from './components/wip/wip.screen'
 import { Console } from "./console"
-import { rBLog, rLog, setEnvTag } from "./logger"
+import { rBLog, rLog } from "./logger"
 import { ConsoleDetail } from "./screens/console_detail"
 import { ConsoleListing } from "./screens/console_listing"
 import { ConsoleTags } from './screens/console_tags'
@@ -20,9 +20,7 @@ const Stack = createStackNavigator()
 export const UILoggerDebugger = ({ show = false, env = '' }) => {
   const [showConsole, setConsole] = useState(false)
   const [modalConfig, setModalConfig] = useState(null)
-
-  setEnvTag(env);
-
+  
   useEffect(() => {
     console.log = (...a) => {
       if (a.length > 1) {
@@ -63,7 +61,7 @@ export const UILoggerDebugger = ({ show = false, env = '' }) => {
                 }
               }}
             >
-              <Stack.Screen name="ConsoleListing" component={ConsoleListing} />
+              <Stack.Screen name="ConsoleListing" component={ConsoleListing} initialParams={{env}}/>
               <Stack.Screen name="ConsoleTags" component={ConsoleTags} />
               <Stack.Screen name="ConsoleDetail" component={ConsoleDetail} />
               <Stack.Screen name="wip" component={WipScreen} />

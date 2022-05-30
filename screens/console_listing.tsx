@@ -6,11 +6,13 @@ import Spacer from "../components/modal/root-modal/spacer/Spacer"
 import { Text } from "../components/text/text"
 import { WipScreen } from "../components/wip/wip.screen"
 import { Console } from "../console"
-import { getEnv, rBLog, rLog } from "../logger"
+import { rBLog, rLog } from "../logger"
 
-export const ConsoleListing = ({ navigation, envName }) => {
+export const ConsoleListing = ({ route,  navigation }) => {
   const [arrays, setArrays] = useState(Console.getInstance().getArray())
   const [isUpdated, setIsUpdated] = useState(false);
+
+  const envName = route.params.env;
 
   useEffect(() => {
     console.log = (...a: any[]) => {
@@ -35,7 +37,6 @@ export const ConsoleListing = ({ navigation, envName }) => {
 
     return () => navigation.setOptions(null)
   }, [navigation, isUpdated])
-  
 
   const ConsoleTagInput = (props) => {
     return (
@@ -68,7 +69,7 @@ export const ConsoleListing = ({ navigation, envName }) => {
         <Text style={{ fontWeight: "bold", fontSize: 20 }}>{`${item.tag}`}</Text>
         <Spacer margin={4} />
         <View style={{ flex: 1, flexDirection: "row" }}>
-          <Text text={getEnv()} style={{fontSize: 12, fontWeight: '500'}} />
+          <Text text={envName} style={{fontSize: 12, fontWeight: '500'}} />
         </View>
         <Spacer margin={4} />
         <Text style={{ fontSize: 10 }} text={item.now} />
@@ -120,9 +121,9 @@ export const ConsoleListing = ({ navigation, envName }) => {
 
               const texts = `----${item.tag} (${
                 item.now
-              }) [[ ${getEnv()} ]]----${"\n"}${content}${"\n"}----END ${item.tag} (${
+              }) [[ ${envName} ]]----${"\n"}${content}${"\n"}----END ${item.tag} (${
                 item.now
-              }) [[ ${getEnv()} ]] ----`
+              }) [[ ${envName} ]] ----`
               Clipboard.setString(texts)
             }}
           />
