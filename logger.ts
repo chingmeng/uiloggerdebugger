@@ -42,11 +42,11 @@ const _pdLog = (separator = ' ', tag, config, ...args) => {
         (showAll || tags.filter((e) => tag.includes(e)).length > 0) &&
         console.debug(
             `
-----${tag} (${now}) [[ ${Console.getInstance().envName} ]] ----
+----${tag} (${now}) [[ ${Console.getInstance().envName} - ${Console.getInstance().getLatestNavigation()} ]] ----
 ${args
     .map((e) => buildText())
     .join(separator)}
-----END ${tag} (${now}) [[ ${Console.getInstance().envName} ]] ----`,
+----END ${tag} (${now}) [[ ${Console.getInstance().envName}  - ${Console.getInstance().getLatestNavigation()} ]] ----`,
         );
  
     // send this off to Reactotron.

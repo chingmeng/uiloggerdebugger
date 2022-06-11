@@ -40,6 +40,10 @@ export class Console {
       this.navigations = this.navigations.reverse().slice(0, 10).reverse();
   }
 
+  getLatestNavigation() {
+    return this.navigations?.[this.navigations.length - 1];
+  }
+
   clear() {
     this.consoleArray = []
     this.presentArray = []
