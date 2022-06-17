@@ -1,11 +1,13 @@
-import React, { useState, useCallback } from "react"
+import React, { useState, useCallback, useRef } from "react"
 import { Dimensions, Image, StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
 import { Button } from "../button/button"
 import { debounce } from "lodash";
 
 export const SearchBar = ({ onChangeText }) => {
 
-  const [searchText, setSearchText] = useState('');
+  const searchText = useRef('');
+  const textInputRef = useRef();
+
   const filterIdentifiers = [
     '@content ', 
     '@tag ',
@@ -14,10 +16,10 @@ export const SearchBar = ({ onChangeText }) => {
     '@datetime ' 
   ]
 
-  const onSearchTextChanged = useCallback(debounce((value) => {
-    onChangeText(value)
-    setSearchText(value)
-  }, 300), []);
+  const editText = useCallback(debounce((value) => {
+    onChangeText && onChangeText(value)
+    searchText.current = value;
+  }, 300), [searchText.current]);
 
   return (
     <>
@@ -28,12 +30,13 @@ export const SearchBar = ({ onChangeText }) => {
             <Image style={SearchBarStyle.SEARCH_BAR_ICON} source={require("./icon_search.png")} />
           </TouchableOpacity>
           <TextInput
+            ref={(ref) => {textInputRef.current = ref}}
             style={SearchBarStyle.SEARCH_BAR}
             value={searchText}
             placeholder="Type to filter by tag"
             selectTextOnFocus={true}
             maxLength={50}
-            onChangeText={onSearchTextChanged}
+            onChangeText={editText}
           />
         </View>
       </View>
@@ -47,7 +50,9 @@ export const SearchBar = ({ onChangeText }) => {
           textStyle={{ fontSize: 12 }}
           style={{ flex: 0, backgroundColor: "#A865C9", margin: 4, paddingHorizontal: 0, paddingVertical: 2}}
           onPress={() => {
-            setSearchText(searchText ? searchText + ' ' + e : searchText + e)
+            const newText = searchText.current ? searchText.current.trim() + " " + e : searchText.current + e;
+            searchText.current = newText;
+            textInputRef.current.setNativeProps({ text: newText });
           }}
         />
       )

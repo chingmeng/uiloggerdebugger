@@ -66,7 +66,7 @@ export class Console {
   filterBySearchText(searchText: string) {
 
     const checkShouldSearch = (query, identifier, source) => {
-      return searchText.includes(identifier) && source.includes(query);
+      return searchText.includes(identifier) && source.toLowerCase().includes(query);
     }
 
     if (searchText) {
