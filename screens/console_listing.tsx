@@ -84,17 +84,6 @@ export const ConsoleListing = ({ route,  navigation }) => {
         />
 
         <View style={{ ...LayoutStyle.HORIZONTAL_FLEX, padding: 8 }} />
-        {true ? (
-          <>
-            <ConsoleTagInput style={{ fontWeight: "300", fontFamily: "Menlo", fontStyle: "italic" }}>
-              Url: {`${item.url} `}
-            </ConsoleTagInput>
-            <ConsoleTagInput style={{ fontWeight: "300", fontStyle: "italic" }}>
-              InfoParams: {getParameterByName("infoParam") ? `${"base64?"}` : null}
-            </ConsoleTagInput>
-            <Spacer margin={4}/>
-          </>
-        ) : null}
 
         <View style={{ ...LayoutStyle.HORIZONTAL_FLEX }}>
           <Button
@@ -154,7 +143,7 @@ export const ConsoleListing = ({ route,  navigation }) => {
         keyExtractor={(item, index) => index.toString()}
         style={{flexGrow: 1, width: '100%', backgroundColor: "beige" }}
         contentContainerStyle={{ flexGrow: 1 }}
-        ListEmptyComponent={<WipScreen text="Empty List" />}
+        ListEmptyComponent={<WipScreen bigText="NOT FOUND" smallText="No Logs found, please amend your search and try again."/>}
         ItemSeparatorComponent={() => (<View
           style={{
             borderWidth: 0.5,
