@@ -1,3 +1,5 @@
+import c from "android/app/src/main/assets/highcharts-files/modules/boost"
+
 export class Console {
   static instance = null
   consoleText = ""
@@ -56,6 +58,45 @@ export class Console {
   setArrayByTag(tag: string) {
     if (tag !== "ALL") {
       this.presentArray = this.consoleArray.filter((e) => e.tag === tag)
+    } else {
+      this.presentArray = this.consoleArray
+    }
+  }
+
+  filterBySearchText(searchText: string) {
+
+    const checkShouldSearch = (query, identifier, source) => {
+      return searchText.includes(identifier) && source.includes(query);
+    }
+
+    if (searchText) {
+      this.presentArray = this.consoleArray.filter((e) => {
+
+        if (searchText.startsWith("@")) {
+
+          const list = [
+            {identifier: '@content ', source: e.content}, 
+            {identifier: '@tag ', source: e.tag}, 
+            {identifier: '@screen ', source: e.currentScreen}, 
+            {identifier: '@pscreen ', source: e.previousScreen}, 
+            {identifier: '@datetime ', source: e.now}, 
+          ];
+          
+          let query = searchText;
+          list.forEach((e) => {
+            query = query.replace(e.identifier, '');
+          })
+
+          let shouldPick = false;
+          list.forEach((e) => {
+            shouldPick = shouldPick || checkShouldSearch(query, e.identifier, e.source);
+          })
+
+          return shouldPick
+
+        }
+        return e.tag.includes(searchText) || e.currentScreen.includes(searchText) || e.content.includes(searchText);
+      })
     } else {
       this.presentArray = this.consoleArray
     }

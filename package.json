@@ -9,10 +9,13 @@
   "author": "CM, Hong",
   "license": "ISC",
   "peerDependencies": {
-    "react-native": "^0.63.3",
     "@react-navigation/bottom-tabs": "^5.7.2",
-		"@react-navigation/drawer": "^5.8.6",
-		"@react-navigation/native": "^5.7.1",
-		"@react-navigation/stack": "^5.7.1"
+    "@react-navigation/drawer": "^5.8.6",
+    "@react-navigation/native": "^5.7.1",
+    "@react-navigation/stack": "^5.7.1",
+    "react-native": "^0.63.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }

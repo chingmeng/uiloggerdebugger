@@ -1,6 +1,7 @@
 /* eslint-disable react-native/sort-styles */
 import React, { useEffect, useLayoutEffect, useState } from "react"
 import { Clipboard, FlatList, StyleSheet, TextInput, View } from "react-native"
+import { SearchBar } from "uiloggerdebugger/components/searchbar/searchbar"
 import { Button } from "../components/button/button"
 import Spacer from "../components/modal/root-modal/spacer/Spacer"
 import { Text } from "../components/text/text"
@@ -142,6 +143,12 @@ export const ConsoleListing = ({ route,  navigation }) => {
             style={{ margin: 8 }}
           />
       </View> 
+      <SearchBar 
+        onChangeText={(text) => {
+          Console.getInstance().filterBySearchText(text)
+          setIsUpdated(!isUpdated);
+        }}
+      />
       <FlatList
         data={arrays}
         keyExtractor={(item, index) => index.toString()}
