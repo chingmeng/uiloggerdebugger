@@ -4,27 +4,32 @@ This package allow developer to insert a UI logger bar just below your main app.
 
 The logger will override console.log in the project, so that it will show up inside the UI logger.
 
-
+![alt UI Logger](photo-sample.png "UI Logger")
 
 ## Sample logs
 
-            console.log("Tag", { happy: 1 });
-            ----Tag (2022-06-17 15:45:35.022) [[ UAT - Auth ]] ----
-            { 
-                "happy" : 1
-            }
-            ----END Tag (2022-06-17 15:45:35.022) [[ UAT  - Auth ]] ----
+        console.log("Single");
+        ----log (2022-06-17 15:45:35.022) [[ UAT - Auth ]] ----
+        "Single"
+        ----END Tag (2022-06-17 15:45:35.022) [[ UAT  - Auth ]] ----
 
-            console.log("Tag2", "ABC")
-            ----Tag2 (2022-06-17 15:45:35.022) [[ UAT - Auth ]] ----
-            "ABC"
-            ----END Tag2 (2022-06-17 15:45:35.022) [[ UAT  - Auth ]] ----
+        console.log("Tag", { happy: 1 });
+        ----Tag (2022-06-17 15:45:35.022) [[ UAT - Auth ]] ----
+        { 
+            "happy" : 1
+        }
+        ----END Tag (2022-06-17 15:45:35.022) [[ UAT  - Auth ]] ----
 
-            console.log("Tag2", "ABC", "Nextline")
-            ----Tag2 (2022-06-17 15:45:35.022) [[ UAT - Auth ]] ----
-            "ABC"
-            "Nextline"
-            ----END Tag2 (2022-06-17 15:45:35.022) [[ UAT  - Auth ]] ----
+        console.log("Tag2", "ABC")
+        ----Tag2 (2022-06-17 15:45:35.022) [[ UAT - Auth ]] ----
+        "ABC"
+        ----END Tag2 (2022-06-17 15:45:35.022) [[ UAT  - Auth ]] ----
+
+        console.log("Tag2", "ABC", "Nextline")
+        ----Tag2 (2022-06-17 15:45:35.022) [[ UAT - Auth ]] ----
+        "ABC"
+        "Nextline"
+        ----END Tag2 (2022-06-17 15:45:35.022) [[ UAT  - Auth ]] ----
 
 
 
@@ -64,7 +69,7 @@ To track navigation and show it in your project, you will have to do some setup 
 
 ## Tracking webview
 
-On webview initial, you could also add below code to track url:
+On webview initialize, you could also add below code to track url:
 
         Console.getInstance().url = <your webview current url>;
 
