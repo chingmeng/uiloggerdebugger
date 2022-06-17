@@ -65,37 +65,41 @@ export class Console {
 
   filterBySearchText(searchText: string) {
 
-    const checkShouldSearch = (query, identifier, source) => {
-      return searchText.includes(identifier) && source.toLowerCase().includes(query);
-    }
-
     if (searchText) {
       this.presentArray = this.consoleArray.filter((e) => {
 
+        const list = [
+          {identifier: '@content ', source: e.content}, 
+          {identifier: '@tag ', source: e.tag}, 
+          {identifier: '@screen ', source: e.currentScreen}, 
+          {identifier: '@pscreen ', source: e.previousScreen}, 
+          {identifier: '@datetime ', source: e.now}, 
+        ];
+
+        let query = searchText;
+        list.forEach((e) => {
+          query = query.replace(e.identifier, '');
+        })
+
         if (searchText.startsWith("@")) {
-
-          const list = [
-            {identifier: '@content ', source: e.content}, 
-            {identifier: '@tag ', source: e.tag}, 
-            {identifier: '@screen ', source: e.currentScreen}, 
-            {identifier: '@pscreen ', source: e.previousScreen}, 
-            {identifier: '@datetime ', source: e.now}, 
-          ];
-          
-          let query = searchText;
-          list.forEach((e) => {
-            query = query.replace(e.identifier, '');
-          })
-
           let shouldPick = false;
+
+          const checkShouldSearch = (query, identifier, source) => {
+            return searchText.includes(identifier) && source.toLowerCase().includes(query.toLowerCase());
+          }
+      
           list.forEach((e) => {
             shouldPick = shouldPick || checkShouldSearch(query, e.identifier, e.source);
           })
-
           return shouldPick
-
         }
-        return e.tag.includes(searchText) || e.currentScreen.includes(searchText) || e.content.includes(searchText);
+
+        let shouldPick = false;
+        list.forEach((e) => {
+          shouldPick = shouldPick || e.source.toLowerCase().includes(query.toLowerCase());
+        })
+
+        return shouldPick;
       })
     } else {
       this.presentArray = this.consoleArray
