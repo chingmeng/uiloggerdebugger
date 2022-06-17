@@ -10,8 +10,8 @@ export const setEnvTag = (env: string) => {
 
 export const getEnv = () => Console.getInstance().envName;
 
-export const rLog = (...args) => {
-    _pdLog(' ', 'log', 1000, ...args);
+export const rLog = (config = null) => (...args) => {
+    _pdLog(' ', 'log', config, ...args);
 };
 
 /** Add additiona configuration with 'config' argument, note: config is { wordLimit } */
@@ -22,7 +22,7 @@ export const rBLog =
     };
 
 const _pdLog = (separator = ' ', tag, config, ...args) => {
-    const characterLimitPerArg = config?.characterLimitPerArg ?? 15000; // default to print 1000 character per arg only
+    const characterLimitPerArg = config?.characterLimitPerArg; // default to print 1000 character per arg only
 
     const now = moment().format('yyyy-MM-DD HH:mm:ss.SSS');
 
@@ -31,7 +31,7 @@ const _pdLog = (separator = ' ', tag, config, ...args) => {
         .map((e) => {
             let stringifyJSON = JSONStringify(e);
             stringifyJSON = stringifyJSON
-                ? stringifyJSON.substring(0, characterLimitPerArg)
+                ? (characterLimitPerArg ? stringifyJSON.substring(0, characterLimitPerArg) : stringifyJSON)
                 : null;
             return typeof args === 'object' && args !== null ? stringifyJSON : e;
         })

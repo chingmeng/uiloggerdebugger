@@ -17,7 +17,7 @@ export const drawerNav = React.createRef<NavigationContainerRef<ParamListBase>>(
 
 const Stack = createStackNavigator()
 
-export const UILoggerDebugger = ({ show = false, env = '' }) => {
+export const UILoggerDebugger = ({ show = false, env = '', logConfig = null  }) => {
   const [showConsole, setConsole] = useState(false)
   const [modalConfig, setModalConfig] = useState(null)
   
@@ -28,7 +28,7 @@ export const UILoggerDebugger = ({ show = false, env = '' }) => {
         const [tag, ...values] = a
         rBLog(tag)(values)
       } else {
-        rLog(...a)
+        rLog(logConfig)(...a)
       }
     }
   }, [])

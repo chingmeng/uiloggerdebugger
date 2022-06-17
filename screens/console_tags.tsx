@@ -4,23 +4,11 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { Button } from '../components/button/button';
 import { WipScreen } from '../components/wip/wip.screen';
 import { Console } from '../console';
-import { rBLog, rLog } from '../logger';
 
 export const ConsoleTags = ({ route, navigation }) => {
 
     const arrays = useRef(Console.getInstance().getTags());
     const triggerUpdate = route?.params?.triggerUpdate;
-
-    useEffect(() => {
-        console.log = (...a: any[]) => {
-            if (a.length > 1) {
-                const [tag, ...values] = a;
-                rBLog(tag)(values);
-            } else {
-                rLog(...a);
-            }
-        };
-    }, []);
 
     const ConsoleItem = ({ item, index }) => {
        return (

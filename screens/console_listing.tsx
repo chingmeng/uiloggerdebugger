@@ -7,24 +7,12 @@ import Spacer from "../components/modal/root-modal/spacer/Spacer"
 import { Text } from "../components/text/text"
 import { WipScreen } from "../components/wip/wip.screen"
 import { Console } from "../console"
-import { rBLog, rLog } from "../logger"
 
 export const ConsoleListing = ({ route,  navigation }) => {
   const [arrays, setArrays] = useState(Console.getInstance().getArray())
   const [isUpdated, setIsUpdated] = useState(false);
 
   const envName = route.params.env;
-
-  useEffect(() => {
-    console.log = (...a: any[]) => {
-      if (a.length > 1) {
-        const [tag, ...values] = a
-        rBLog(tag)(values)
-      } else {
-        rLog(...a)
-      }
-    }
-  }, [])
 
   useEffect(() => {
     setArrays(Console.getInstance().getArray())
