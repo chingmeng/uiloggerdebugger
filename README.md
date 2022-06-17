@@ -4,7 +4,7 @@ This package allow developer to insert a UI logger bar just below your main app.
 
 The logger will override console.log in the project, so that it will show up inside the UI logger.
 
-![alt UI Logger](photo-sample.png "UI Logger") { width: 200px; }
+<img src="photo-sample.png" alt="UI Logger" width="200"/>
 
 ## Sample logs
 
