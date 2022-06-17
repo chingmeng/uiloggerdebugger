@@ -124,7 +124,13 @@ export const ConsoleListing = ({ route,  navigation }) => {
   }
 
   return (
-    <View style={{ ...LayoutStyle.VERTICAL_FLEX }}>
+    <View style={{ 
+      ...LayoutStyle.VERTICAL_FLEX, 
+      shadowColor: "black",
+      shadowOpacity: 0.3,
+      shadowRadius: 4,
+      shadowOffset: { height: 1, width: 0}  
+    }}>
       <Text style={{ fontWeight: "bold", fontSize: 16, marginHorizontal: 8 }}>{`Trails (Max 10)`}</Text>
       <View style={{flexDirection: 'row'}}>
           <Text 
