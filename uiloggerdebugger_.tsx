@@ -26,7 +26,7 @@ export const UILoggerDebugger = ({ show = false, env = '', logConfig = null  }) 
     console.log = (...a) => {
       if (a.length > 1) {
         const [tag, ...values] = a
-        rBLog(tag)(values)
+        rBLog(tag, logConfig)(values)
       } else {
         rLog(logConfig)(...a)
       }
