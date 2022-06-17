@@ -38,7 +38,9 @@ The logger will override console.log in the project, so that it will show up ins
         <UILoggerDebugger show={__DEV__} env={'UAT'} logConfig={{characterLimitPerArg: 100000 }} />
 
 env: Setup yor ENV name here, will show up yor ENV in each log
+
 logConfig: Set your console log character limit here, UI logger won't be affected. If not state, will default not to limit the log.
+
 show: Setup to show the console bar in the project, __DEV__ settings is affected by the project itself.
 
 
