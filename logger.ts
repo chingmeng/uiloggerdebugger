@@ -26,12 +26,12 @@ const _pdLog = (separator = ' ', tag, config, ...args) => {
 
     const now = moment().format('yyyy-MM-DD HH:mm:ss.SSS');
 
-    const buildText = () => {
+    const buildText = (shouldLimit = true) => {
         return args
         .map((e) => {
             let stringifyJSON = JSONStringify(e);
             stringifyJSON = stringifyJSON
-                ? (characterLimitPerArg ? stringifyJSON.substring(0, characterLimitPerArg) : stringifyJSON)
+                ? (characterLimitPerArg && shouldLimit ? stringifyJSON.substring(0, characterLimitPerArg) : stringifyJSON)
                 : null;
             return typeof args === 'object' && args !== null ? stringifyJSON : e;
         })
@@ -63,7 +63,7 @@ ${args
         }
 
         const newTexts = args
-        .map((e) => buildText())
+        .map((e) => buildText(false))
         .join(separator);
 
         const now = moment().format('yyyy-MM-DD HH:mm:ss.SSS');
