@@ -1,9 +1,6 @@
 import moment from 'moment';
 import { Console } from './console';
 
-const tags = [];
-const showAll = true;
-
 export const setEnvTag = (env: string) => {
     Console.getInstance().envName = env;
 };
@@ -23,6 +20,8 @@ export const rBLog =
 
 const _pdLog = (separator = ' ', tag, config, ...args) => {
     const characterLimitPerArg = config?.characterLimitPerArg; // default to print 1000 character per arg only
+    const showAll = config?.showAll ?? true;
+    const tags = config?.tags ?? [];
 
     const now = moment().format('yyyy-MM-DD HH:mm:ss.SSS');
 
