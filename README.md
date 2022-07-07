@@ -34,8 +34,15 @@ The logger will override console.log in the project, so that it will show up ins
 
 
 ## Configuration
-
-        <UILoggerDebugger show={__DEV__} env={'UAT'} logConfig={{characterLimitPerArg: 100000 }} />
+        <UILoggerDebugger 
+            show={__DEV__} 
+            env={Config.RN_ENV}
+            logConfig={{
+                showAll: false,
+                tags: [' response'],
+                characterLimitPerArg: 100000
+            }}
+        />
 
 env: Setup yor ENV name here, will show up yor ENV in each log
 
