@@ -85,7 +85,7 @@ export class Console {
           let shouldPick = false;
 
           const checkShouldSearch = (query, identifier, source) => {
-            return searchText.includes(identifier) && source.toLowerCase().includes(query.toLowerCase());
+            return searchText.includes(identifier) && source?.toString().toLowerCase().includes(query?.toString().toLowerCase());
           }
       
           list.forEach((e) => {
@@ -96,7 +96,7 @@ export class Console {
 
         let shouldPick = false;
         list.forEach((e) => {
-          shouldPick = shouldPick || e.source.toLowerCase ? e.source.toLowerCase().includes(query.toLowerCase()) : e.source.includes(query.toLowerCase());
+          shouldPick = shouldPick || e.source?.toString().toLowerCase().includes(query?.toString().toLowerCase());
         })
 
         return shouldPick;
