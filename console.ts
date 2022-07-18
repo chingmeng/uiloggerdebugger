@@ -96,7 +96,7 @@ export class Console {
 
         let shouldPick = false;
         list.forEach((e) => {
-          shouldPick = shouldPick || e.source.toLowerCase().includes(query.toLowerCase());
+          shouldPick = shouldPick || e.source.toLowerCase ? e.source.toLowerCase().includes(query.toLowerCase()) : e.source.includes(query.toLowerCase());
         })
 
         return shouldPick;
