@@ -24,9 +24,9 @@ export const SearchBar = ({ onChangeText }) => {
   return (
     <>
     <View style={SearchBarStyle.SEARCH_BAR_BASE}>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: 'center' }}>
         <View style={SearchBarStyle.SEARCH_BAR_CONTAINER}>
-          <TouchableOpacity style={{ flex: 0 }}>
+          <TouchableOpacity style={{ flex: 0, alignItems: "center", justifyContent: 'center' }}>
             <Image style={SearchBarStyle.SEARCH_BAR_ICON} source={require("./icon_search.png")} />
           </TouchableOpacity>
           <TextInput
@@ -37,7 +37,7 @@ export const SearchBar = ({ onChangeText }) => {
             maxLength={50}
             onChangeText={editText}
           />
-          <TouchableOpacity style={{flex: 0}} onPress={() => {
+          <TouchableOpacity style={{flex: 0, alignItems: "center", justifyContent: 'center'}} onPress={() => {
             onChangeText && onChangeText("");
             searchText.current = "";
             textInputRef.current.setNativeProps({ text: "" });
@@ -51,7 +51,7 @@ export const SearchBar = ({ onChangeText }) => {
       </View>
     </View>
 
-    <View style={{ flexDirection: 'row', flexWrap: 1, paddingVertical: 8 }}>
+    <View style={{ flexDirection: 'row', height: 50, maxHeight: 50, flexGrow: 1, paddingVertical: 8 }}>
     {filterIdentifiers.map( (e, index) => {
       return (
         <Button

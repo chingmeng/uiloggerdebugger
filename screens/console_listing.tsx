@@ -1,6 +1,6 @@
 /* eslint-disable react-native/sort-styles */
 import React, { useEffect, useLayoutEffect, useState } from "react"
-import { Clipboard, FlatList, StyleSheet, TextInput, View } from "react-native"
+import { Clipboard, FlatList, StyleSheet, TextInput, View, ScrollView, Text as RText } from "react-native"
 import { SearchBar } from "uiloggerdebugger/components/searchbar/searchbar"
 import { Button } from "../components/button/button"
 import Spacer from "../components/modal/root-modal/spacer/Spacer"
@@ -29,13 +29,20 @@ export const ConsoleListing = ({ route,  navigation }) => {
 
   const ConsoleTagInput = (props) => {
     return (
-      <TextInput
-        multiline
-        editable={false}
-        style={[{ fontWeight: "200", fontFamily: 'Menlo', paddingHorizontal: 8 }, props.style]}
-      >
-        {props.children}
-      </TextInput>
+
+      <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 8 }}>
+        <RText 
+          selectable={true}
+          style={{ 
+          fontWeight: "200", 
+          fontFamily: 'Menlo', 
+          paddingHorizontal: 8, 
+          color: 'black',
+          flex: 1, 
+          marginVertical: 8, 
+          backgroundColor: "lightgray"
+        }}>{props.children}</RText>
+      </ScrollView>
     )
   }
 
@@ -62,7 +69,7 @@ export const ConsoleListing = ({ route,  navigation }) => {
         <Spacer margin={4} />
         <Text style={{ fontSize: 10 }} text={item.now} />
         <Spacer margin={2} />
-        <ConsoleTagInput style={{ flex: 1, marginVertical: 8, backgroundColor: "lightgray" }}>
+        <ConsoleTagInput>
           {item.content?.substring(0, 200)}
         </ConsoleTagInput>
 
