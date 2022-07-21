@@ -73,7 +73,7 @@ export const UILoggerDebugger = ({ show = false, env = '', logConfig = null  }) 
     })
   }, [showConsole])
 
-  if (!show || __DEV__ === false) {
+  if (!show) {
     return null
   }
 
