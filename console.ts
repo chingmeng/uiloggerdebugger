@@ -1,4 +1,3 @@
-import c from "android/app/src/main/assets/highcharts-files/modules/boost"
 
 export class Console {
   static instance = null
@@ -66,40 +65,47 @@ export class Console {
   filterBySearchText(searchText: string) {
 
     if (searchText) {
-      this.presentArray = this.consoleArray.filter((e) => {
+      this.presentArray = this.consoleArray.filter((ee: any) => {
 
         const list = [
-          {identifier: '@content ', source: e.content}, 
-          {identifier: '@tag ', source: e.tag}, 
-          {identifier: '@screen ', source: e.currentScreen}, 
-          {identifier: '@pscreen ', source: e.previousScreen}, 
-          {identifier: '@datetime ', source: e.now}, 
+          {identifier: '@content ', source: ee.content}, 
+          {identifier: '@tag ', source: ee.tag}, 
+          {identifier: '@screen ', source: ee.currentScreen}, 
+          {identifier: '@pscreen ', source: ee.previousScreen}, 
+          {identifier: '@datetime ', source: ee.now}, 
         ];
 
-        let query = searchText;
-        list.forEach((e) => {
-          query = query.replace(e.identifier, '');
-        })
-
-        if (searchText.startsWith("@")) {
-          let shouldPick = false;
-
-          const checkShouldSearch = (query, identifier, source) => {
-            return searchText.includes(identifier) && source?.toString().toLowerCase().includes(query?.toString().toLowerCase());
+        let queries = [] as any[];
+        searchText.split('&&').forEach((query) => {
+          if(list.some((k) => query.includes(k.identifier))) {
+            list.forEach((e) => {
+              if (query.includes(e.identifier)) {
+                queries.push({text: query.replace(e.identifier, ''), identifier: e.identifier, source: e.source })
+              }
+            })
+          } else {
+            queries.push({text: query, ...ee});
           }
-      
-          list.forEach((e) => {
-            shouldPick = shouldPick || checkShouldSearch(query, e.identifier, e.source);
-          })
-          return shouldPick
-        }
-
-        let shouldPick = false;
-        list.forEach((e) => {
-          shouldPick = shouldPick || e.source?.toString().toLowerCase().includes(query?.toString().toLowerCase());
         })
 
-        return shouldPick;
+        const checkShouldSearch = (queries) => {
+          let shouldQuery = true;
+          queries.forEach((query) => {
+            if (query.identifier) {
+              const matchText = query.source?.toString().toLowerCase().includes(query?.text?.toString().toLowerCase());
+              shouldQuery = shouldQuery && matchText;
+            } else {
+              // If no identifier in string, just do normal match text.
+              const matchText = 
+                query.content?.toString().toLowerCase().includes(query?.text?.toString().toLowerCase()) ||
+                query.tag?.toString().toLowerCase().includes(query?.text?.toString().toLowerCase());
+              shouldQuery = shouldQuery && matchText;
+            }
+          })
+         return shouldQuery 
+       }
+
+       return checkShouldSearch(queries);
       })
     } else {
       this.presentArray = this.consoleArray
