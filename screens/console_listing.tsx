@@ -85,7 +85,7 @@ export const ConsoleListing = ({ route,  navigation }) => {
             text="Details"
             textStyle={{ color: "white", fontSize: 12 }}
             style={{ flex: 1, backgroundColor: "purple", margin: 4 }}
-            onPress={() => navigation.navigate("ConsoleDetail", { content: item })}
+            onPress={() => navigation.navigate("ConsoleDetail", { content: item, envName })}
           />
 
           <Button

@@ -3,12 +3,12 @@ import { Image, StyleSheet, TextInput, TouchableOpacity, View } from "react-nati
 import { Button } from "../button/button"
 import { debounce } from "lodash";
 
-export const SearchBar = ({ onChangeText }) => {
+export const SearchBar = ({ onChangeText, placeholder="Type to filter by tag", showIdentifiers = true, triggerUpdate, customIdentifiers }) => {
 
   const searchText = useRef('');
   const textInputRef = useRef('');
 
-  const filterIdentifiers = [
+  const filterIdentifiers = customIdentifiers ?? [
     '@content ', 
     '@tag ',
     '@screen ',
@@ -32,7 +32,7 @@ export const SearchBar = ({ onChangeText }) => {
           <TextInput
             ref={(ref) => {textInputRef.current = ref}}
             style={SearchBarStyle.SEARCH_BAR}
-            placeholder="Type to filter by tag"
+            placeholder={placeholder}
             selectTextOnFocus={true}
             maxLength={50}
             onChangeText={editText}
@@ -51,23 +51,24 @@ export const SearchBar = ({ onChangeText }) => {
       </View>
     </View>
 
-    <View style={{ flexDirection: 'row', height: 50, maxHeight: 50, flexGrow: 1, paddingVertical: 8 }}>
+    {showIdentifiers && (<View style={{ flexDirection: 'row', height: 50, maxHeight: 50, flexGrow: 1, paddingVertical: 8 }}>
     {filterIdentifiers.map( (e, index) => {
       return (
         <Button
           key={'uiloggerdebugger-button-' + index}
           text={e.trim()}
           textStyle={{ fontSize: 12 }}
-          style={{ flex: 0, backgroundColor: "#A865C9", margin: 4, paddingHorizontal: 0, paddingVertical: 2}}
+          style={{ flex: 0, backgroundColor: "#A865C9", margin: 4, paddingHorizontal: 8, paddingVertical: 2}}
           onPress={() => {
             const newText = searchText.current ? searchText.current.trim() + " " + e : searchText.current + e;
             searchText.current = newText;
             textInputRef.current.setNativeProps({ text: newText });
+            triggerUpdate && triggerUpdate(newText);
           }}
         />
       )
     })}
-    </View>
+    </View>)}
   
     </>
   )
