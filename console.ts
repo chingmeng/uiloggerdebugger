@@ -113,6 +113,10 @@ export class Console {
   }
 
   getTags() {
-    return [...this.tags, "ALL"]
+    const newArray = [...this.tags, "ALL"];
+    newArray.sort((a: String, b: String) => {
+      return -a.localeCompare(b);
+    })
+    return newArray;
   }
 }

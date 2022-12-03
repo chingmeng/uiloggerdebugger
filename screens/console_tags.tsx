@@ -14,11 +14,18 @@ export const ConsoleTags = ({ route, navigation }) => {
        return (
            <View 
             key={'console-tag-'+index}
-            style={{marginVertical: 8, marginHorizontal: 16, backgroundColor: "beige"}}>
+            style={{
+                flexGrow: 1,
+                marginVertical: 8, 
+                marginHorizontal: 8,
+                width: 0, // Add this line will limit flexGrow to screen size(?)
+            }}
+            >
                <Button 
                 text={item} 
                 textStyle={{fontSize: 16, fontWeight: 'bold'}}
-                style={{backgroundColor: "purple", margin: 4}} 
+                numberOfLines={2} 
+                style={{flex: 1, backgroundColor: "purple", margin: 4}} 
                 onPress={() => {
                     Console.getInstance().setArrayByTag(item)
                     triggerUpdate && triggerUpdate();
@@ -32,8 +39,9 @@ export const ConsoleTags = ({ route, navigation }) => {
     return (
         <FlatList
            data={arrays.current}
+           numColumns={2}        
            keyExtractor={(item, index) => index.toString()}
-           style={{flex : 0, backgroundColor: 'beige'}}
+           style={{flex : 1, backgroundColor: 'beige'}}
            contentContainerStyle={{ flexGrow: 1 }}
            ListEmptyComponent={<WipScreen text="Empty List" />}
            renderItem={ConsoleItem}

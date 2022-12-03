@@ -18,6 +18,7 @@ export function Button(props: ButtonProps) {
     style: styleOverride,
     textStyle: textStyleOverride,
     children,
+    numberOfLines,
     ...rest
   } = props
 
@@ -36,7 +37,7 @@ export function Button(props: ButtonProps) {
 
   return (
     <TouchableOpacity style={viewStyles} {...rest}>
-      {content}
+      <Text numberOfLines={numberOfLines}>{content}</Text>
     </TouchableOpacity>
   )
 }
